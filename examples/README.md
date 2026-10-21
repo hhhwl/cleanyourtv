@@ -131,6 +131,7 @@ on that firmware, grouped and commented. These are starting points: comment out 
 
 Notes for models that have no tested list yet live in [`docs/devices/`](../docs/devices/):
 
+- [Xiaomi MiTV-ASTP0 "mulan"](../docs/devices/xiaomi-mitv-astp0-mulan.md), Android 9, firmware `24.7.4.3982`: compatible Home identity, opt-in STR wake fix, reversible stock-launcher disable, physical remote off/on verification and recovery; cold boot and long-term use untested.
 - [TCL `75c63b`](../docs/devices/tcl-75c63b.md), owner-reported retail model, `Smart TV Pro` / `BeyondTV4`, Android 11, `V8-R51MT05-LF1V652`: launcher-only installation, HOME priorities and component restrictions, correct Live TV player package, restoration and explicit test limits.
 - [Xiaomi MiTV-MFTR0 "freeguy"](../docs/devices/xiaomi-mitv-mftr0-freeguy.txt), China, Android 14: inputs, Xiaomi settings intents, app discovery.
 
