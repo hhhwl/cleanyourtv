@@ -1,0 +1,62 @@
+plugins {
+    id 'com.android.application'
+}
+
+// Reuse the already-tested boot/STR receiver and policy without the old Home UI.
+def sharedStartup = tasks.register('copyStartupSources', Sync) {
+    from('../app/src/main/java') {
+        include 'com/gathin/tvhome/StartupPolicy.java'
+        include 'com/gathin/tvhome/StartupReceiver.java'
+    }
+    into layout.buildDirectory.dir('generated/startup')
+}
+def sharedStartupTests = tasks.register('copyStartupTests', Sync) {
+    from('../app/src/test/java') {
+        include 'com/gathin/tvhome/StartupPolicyTest.java'
+    }
+    into layout.buildDirectory.dir('generated/startupTests')
+}
+
+android {
+    namespace 'com.gathin.tvhome'
+    compileSdk 34
+
+    defaultConfig {
+        // Only for the inspected Xiaomi installation which already uses this identity.
+        applicationId 'com.ts.launcher'
+        minSdk 26
+        targetSdk 25
+        // Same code as the installed 2.4 APK, so its signed backup can be restored with -r.
+        versionCode 5
+        versionName '2.4-aerial-bridge.1'
+    }
+
+    sourceSets {
+        main.java.srcDir(sharedStartup.map { it.destinationDir })
+        test.java.srcDir(sharedStartupTests.map { it.destinationDir })
+    }
+
+    lint {
+        disable 'ExpiredTargetSdkVersion'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+tasks.named('preBuild').configure { dependsOn sharedStartup, sharedStartupTests }
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+}
