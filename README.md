@@ -1,3 +1,18 @@
+# Aerial Xiaomi Home Bridge — tested fork branch
+
+This branch adds an 8.6 KiB, no-UI Home bridge for **MiTV-ASTP0 / Android 9**,
+combining CleanYourTV's boot/standby handling with the separately installed,
+unmodified official Aerial desktop. Only `RECEIVE_BOOT_COMPLETED` is requested;
+the bridge has no network permission or running service. Aerial has its own permissions
+and network use, described in its [official project](https://github.com/pengchujin/aerial-tv).
+
+**[安装流程、验收和恢复 / Guide](docs/aerial-xiaomi-astp0.md)** ·
+**[Tested APK and checksums](https://github.com/hhhwl/cleanyourtv/releases/tag/v2.4-mitv-astp0-aerial-bridge.1)** ·
+**[Report a bridge issue](https://github.com/hhhwl/cleanyourtv/issues)**
+
+This is an unofficial, single-device experimental build, not an upstream CleanYourTV
+or Aerial release. Follow the guide above for this branch; the original upstream README follows.
+
 <p align="center">
   <a href="https://cleanyour.tv"><img src="https://raw.githubusercontent.com/Gathin23/cleanyourtv/main/docs/banner.png" alt="CleanYourTV. Your TV, minus the ads. Strip the bloatware from any Android TV or Google TV over Wi-Fi and replace the ad-filled home screen with a clean launcher that looks like an Apple TV. No root, no cable, nothing uninstalled, and a one-line restore." width="800"></a>
 </p>
